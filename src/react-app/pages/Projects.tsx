@@ -11,6 +11,7 @@ import {
   Linkedin,
   Mail,
 } from "lucide-react";
+import Footer from "../components/Footer";
 
 // Images
 import ECommerce from "../assets/images/E-Commerce.png";
@@ -461,86 +462,7 @@ const ProjectsPage = () => {
         </motion.section>
 
         {/* ===== Footer Section ===== */}
-        <motion.section
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="py-20 mt-20 border-t border-gray-800"
-        >
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Download CV Card */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="glass p-8 rounded-xl text-center space-y-6 hover:glow-orange transition-all duration-300"
-            >
-              <div className="w-16 h-16 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto">
-                <Code className="w-8 h-8 text-orange-500" />
-              </div>
-              <div className="space-y-2">
-                <h3 className="text-3xl font-bold text-white">View More Projects</h3>
-                <p className="text-gray-400 text-lg">Explore my complete portfolio on GitHub</p>
-              </div>
-              <a
-                href="https://github.com/saichinnam1"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center space-x-2 w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95"
-              >
-                <Github className="w-5 h-5" />
-                <span>Visit GitHub</span>
-              </a>
-            </motion.div>
-
-            {/* Connect Section */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="glass p-8 rounded-xl space-y-8"
-            >
-              <div className="text-center">
-                <h3 className="text-3xl font-bold text-white mb-2">
-                  Let's <span className="text-orange-500">Connect</span>
-                </h3>
-                <p className="text-gray-400 text-lg">Reach out and let's collaborate</p>
-              </div>
-
-              <div className="flex justify-center gap-6">
-                <a
-                  href="https://github.com/saichinnam1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-5 bg-gray-800 rounded-full hover:bg-gray-700 transition-all duration-300 transform hover:scale-110 group hover:shadow-lg hover:shadow-gray-600/50"
-                  title="GitHub"
-                >
-                  <Github className="w-7 h-7 text-gray-300 group-hover:text-white" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/venkatasaikumar-chinnam-ba741a201/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-5 bg-gray-800 rounded-full hover:bg-blue-600 transition-all duration-300 transform hover:scale-110 group hover:shadow-lg hover:shadow-blue-600/50"
-                  title="LinkedIn"
-                >
-                  <Linkedin className="w-7 h-7 text-gray-300 group-hover:text-white" />
-                </a>
-                <a
-                  href="mailto:venkatasaikumarchinnam2@gmail.com"
-                  className="p-5 bg-gray-800 rounded-full hover:bg-orange-600 transition-all duration-300 transform hover:scale-110 group hover:shadow-lg hover:shadow-orange-600/50"
-                  title="Email"
-                >
-                  <Mail className="w-7 h-7 text-gray-300 group-hover:text-white" />
-                </a>
-              </div>
-
-              <p className="text-gray-400 text-center text-lg">
-                Feel free to reach out through any of these channels
-              </p>
-            </motion.div>
-          </div>
-        </motion.section>
+        <Footer showCV={false} />
       </div>
     </div>
   );

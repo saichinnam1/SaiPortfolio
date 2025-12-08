@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Linkedin, Github, Send, CheckCircle, AlertCircle, Copy, ExternalLink } from 'lucide-react';
+import Footer from '@/react-app/components/Footer';
 // import TerminalWindow from '@/react-app/components/TerminalWindow';
 // import CodeBlock from '@/react-app/components/CodeBlock';
 
@@ -368,6 +369,9 @@ const ContactPage = () => {
             </motion.div>
           </motion.div>
         </div>
+
+        {/* Footer */}
+        <Footer showCV={false} />
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { GraduationCap, Award, Code2, Target, Users, Download, Github, Linkedin, Mail } from 'lucide-react';
+import Footer from '@/react-app/components/Footer';
 // import TerminalWindow from '@/react-app/components/TerminalWindow';
 // import CodeBlock from '@/react-app/components/CodeBlock';
 
@@ -343,85 +344,7 @@ public class AboutSital {
         </motion.section>
 
         {/* Footer - Download CV & Connect Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="py-20 mt-20 border-t border-gray-800"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-            {/* Download CV Card */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="glass p-6 sm:p-8 rounded-xl text-center space-y-6 hover:glow-orange transition-all duration-300"
-            >
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto">
-                <Download className="w-6 h-6 sm:w-8 sm:h-8 text-orange-500" />
-              </div>
-              <div className="space-y-2">
-                <h3 className="text-2xl sm:text-3xl font-bold text-white">Download My CV</h3>
-                <p className="text-gray-400 text-base sm:text-lg">Get my complete resume and qualifications</p>
-              </div>
-              <a
-                href="/cv/Venkata_Saikumar_CV.pdf"
-                download
-                className="inline-flex items-center justify-center space-x-2 w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95"
-              >
-                <Download className="w-5 h-5" />
-                <span>Download CV</span>
-              </a>
-            </motion.div>
-
-            {/* Connect Section */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="glass p-6 sm:p-8 rounded-xl space-y-8"
-            >
-              <div className="text-center">
-                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-                  Let's <span className="text-orange-500">Connect</span>
-                </h3>
-                <p className="text-gray-400 text-base sm:text-lg">Reach out and let's collaborate</p>
-              </div>
-
-              <div className="flex justify-center gap-6">
-                <a
-                  href="https://github.com/saichinnam1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-5 bg-gray-800 rounded-full hover:bg-gray-700 transition-all duration-300 transform hover:scale-110 group hover:shadow-lg hover:shadow-gray-600/50"
-                  title="GitHub"
-                >
-                  <Github className="w-7 h-7 text-gray-300 group-hover:text-white" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/venkatasaikumar-chinnam-ba741a201/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-5 bg-gray-800 rounded-full hover:bg-blue-600 transition-all duration-300 transform hover:scale-110 group hover:shadow-lg hover:shadow-blue-600/50"
-                  title="LinkedIn"
-                >
-                  <Linkedin className="w-7 h-7 text-gray-300 group-hover:text-white" />
-                </a>
-                <a
-                  href="mailto:venkatasaikumarchinnam2@gmail.com"
-                  className="p-5 bg-gray-800 rounded-full hover:bg-orange-600 transition-all duration-300 transform hover:scale-110 group hover:shadow-lg hover:shadow-orange-600/50"
-                  title="Email"
-                >
-                  <Mail className="w-7 h-7 text-gray-300 group-hover:text-white" />
-                </a>
-              </div>
-
-              <p className="text-gray-400 text-center text-lg">
-                Feel free to reach out through any of these channels
-              </p>
-            </motion.div>
-          </div>
-        </motion.section>
+        <Footer showCV={true} cvLink="/cv/Venkata_Saikumar_CV.pdf" />
       </div>
     </div>
   );
