@@ -12,7 +12,7 @@ const HomePage = () => {
   const [showStats, setShowStats] = useState(false);
 
   const stats = [
-    { label: 'Projects Completed', value: 4, suffix: '+' },
+    { label: 'Projects Completed', value: 7, suffix: '+' },
     { label: 'Technologies Mastered', value: 10, suffix: '+' },
     { label: 'Years of Learning', value: 1, suffix: '+' },
     { label: 'Years of Experience', value: '6 months' },
