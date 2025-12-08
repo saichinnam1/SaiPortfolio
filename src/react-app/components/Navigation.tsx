@@ -25,8 +25,11 @@ const Navigation = () => {
               <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <Code2 className="w-5 h-5 text-white" />
               </div>
-              <span className="font-mono font-bold text-lg text-white">
+              <span className="hidden sm:inline font-mono font-bold text-sm md:text-lg text-white">
                ParentClass SaiChinnam<span className="text-orange-500">.java</span>
+              </span>
+              <span className="sm:hidden font-mono font-bold text-sm text-white">
+               Sai<span className="text-orange-500">.java</span>
               </span>
             </Link>
 

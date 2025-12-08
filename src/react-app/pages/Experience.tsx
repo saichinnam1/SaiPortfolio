@@ -63,7 +63,7 @@ const ExperiencePage = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-24 px-6">
+    <div className="min-h-screen pt-24 px-4 sm:px-6 md:px-10 lg:px-20">
       <div className="max-w-6xl mx-auto">
         
         {/* Header */}
@@ -73,13 +73,13 @@ const ExperiencePage = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl lg:text-6xl font-bold text-white mb-4">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
             Java <span className="text-orange-500 font-mono">Mastery</span>
           </h1>
-          <p className="text-2xl text-orange-400 font-bold mb-4">
+          <p className="text-lg sm:text-2xl text-orange-400 font-bold mb-4">
             Passionate Java Developer | Enterprise Solutions Architect
           </p>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto">
             Building high-performance, scalable backend systems with Java Spring Boot. 
             Expertise in microservices architecture, real-time systems, and enterprise-grade solutions.
             Java is not just a language—it's my passion and craft.
@@ -87,7 +87,7 @@ const ExperiencePage = () => {
         </motion.div>
 
         {/* Timeline */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-20">
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}

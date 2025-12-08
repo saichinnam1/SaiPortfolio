@@ -42,7 +42,7 @@ const HomePage = () => {
     <div className="min-h-screen pt-16">
       {/* ===== Hero Section with Background Image ===== */}
       <section
-        className="relative min-h-screen flex items-center justify-center px-6">
+        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
   {/* Video Background */}
   {/* <video
     className="absolute inset-0 w-full h-full object-cover"
@@ -58,7 +58,7 @@ const HomePage = () => {
   {/* Dark overlay for readability */}
   <div className="absolute inset-0 bg-black/60"></div>
 
-        <div className="max-w-9xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
+        <div className="max-w-9xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10">
           {/* Left Side - Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -76,12 +76,12 @@ const HomePage = () => {
                 {/* System.out.println("Hello, World!"); */}
               </motion.div>
 
-              <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight">
                 <span className="block">Sai</span>
                 <span className="block text-orange-500 font-mono">Kumar</span>
               </h1>
 
-              <div className="text-xl lg:text-2xl text-gray-300 h-8">
+              <div className="text-base sm:text-lg lg:text-2xl text-gray-300 h-8">
                 <TypewriterEffect
                   text="Passionate Java Developer"
                   speed={100}
@@ -89,7 +89,7 @@ const HomePage = () => {
                 />
               </div>
 
-              <p className="text-lg text-gray-400 max-w-md leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-400 max-w-md leading-relaxed">
                 Self-driven developer specializing in enterprise Java solutions,
                 Spring Boot microservices, and full-stack development with 1+ years of practical experience.
               </p>
@@ -124,7 +124,7 @@ const HomePage = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 2 }}
-              className="flex flex-wrap gap-6 pt-6 border-t border-gray-800"
+              className="flex flex-col sm:flex-row sm:flex-wrap gap-4 sm:gap-6 pt-6 border-t border-gray-800"
             >
               <div className="flex items-center space-x-2 text-gray-300">
                 <MapPin className="w-4 h-4 text-orange-500" />

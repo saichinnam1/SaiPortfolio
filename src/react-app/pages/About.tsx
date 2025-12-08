@@ -116,7 +116,7 @@ public class AboutSital {
   }, []);
 
   return (
-    <div className="min-h-screen pt-24 px-20">
+    <div className="min-h-screen pt-24 px-4 sm:px-6 md:px-10 lg:px-20">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -125,16 +125,16 @@ public class AboutSital {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl lg:text-6xl font-bold text-white mb-4">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
             About <span className="text-orange-500 font-mono">Me</span>
           </h1>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
             Passionate developer with a love for clean code and innovative solutions
           </p>
         </motion.div>
 
         {/* Main Content Grid - About & Java Topics */}
-        <div className="grid lg:grid-cols-2 gap-16 items-start mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start mb-20">
           {/* Left Side - Personal Story */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -168,12 +168,12 @@ public class AboutSital {
             </div>
 
             {/* Core Values */}
-            <div className="glass p-6 rounded-xl">
-              <h3 className="text-xl font-bold text-white mb-6 flex items-center space-x-2">
+            <div className="glass p-4 sm:p-6 rounded-xl">
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-6 flex items-center space-x-2">
                 <Target className="w-5 h-5 text-orange-500" />
                 <span>Core Values</span>
               </h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {['Continuous Learning', 'Code Quality', 'Team Collaboration', 'User-Centric Design'].map((value, index) => (
                   <motion.div
                     key={value}
@@ -220,7 +220,7 @@ public class AboutSital {
               
               {/* Auto-scrolling Topic Display */}
               <motion.div
-                className="glass p-8 rounded-xl min-h-[180px] flex flex-col justify-center items-center"
+                className="glass p-6 sm:p-8 rounded-xl min-h-[160px] flex flex-col justify-center items-center"
                 key={currentTopicIndex}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -228,8 +228,8 @@ public class AboutSital {
                 transition={{ duration: 0.5 }}
               >
                 <div className="text-center">
-                  <p className="text-gray-400 text-sm uppercase tracking-wider mb-4">Currently Focusing On</p>
-                  <h3 className="text-4xl font-bold text-orange-500 mb-2 font-mono">
+                  <p className="text-gray-400 text-xs sm:text-sm uppercase tracking-wider mb-4">Currently Focusing On</p>
+                  <h3 className="text-2xl sm:text-4xl font-bold text-orange-500 mb-2 font-mono">
                     {javaTopics[currentTopicIndex]}
                   </h3>
                   <p className="text-gray-500 text-sm">
@@ -239,7 +239,7 @@ public class AboutSital {
               </motion.div>
 
               {/* Topic Grid */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 gap-2 sm:gap-3">
                 {javaTopics.map((topic, index) => (
                   <motion.div
                     key={topic}
@@ -272,7 +272,7 @@ public class AboutSital {
             Education & <span className="text-orange-500">Achievements</span>
           </h2>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             {achievements.map((achievement, index) => {
               const Icon = achievement.icon;
               return (
@@ -283,12 +283,12 @@ public class AboutSital {
                   transition={{ delay: index * 0.2 }}
                   className="glass p-6 rounded-xl text-center hover:glow-orange transition-all duration-300 group"
                 >
-                  <div className={`w-16 h-16 ${achievement.color} bg-current/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className={`w-8 h-8 ${achievement.color}`} />
+                  <div className={`w-12 h-12 sm:w-16 sm:h-16 ${achievement.color} bg-current/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <Icon className={`w-6 h-6 sm:w-8 sm:h-8 ${achievement.color}`} />
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2">{achievement.title}</h3>
-                  <p className="text-gray-400 text-sm mb-1">{achievement.organization}</p>
-                  <div className="flex justify-between items-center text-xs text-gray-500">
+                  <h3 className="text-base sm:text-lg font-bold text-white mb-2">{achievement.title}</h3>
+                  <p className="text-gray-400 text-xs sm:text-sm mb-1">{achievement.organization}</p>
+                  <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-1 text-xs text-gray-500">
                     <span>{achievement.year}</span>
                     <span className="text-orange-500 font-mono">{achievement.grade}</span>
                   </div>
@@ -305,13 +305,13 @@ public class AboutSital {
           transition={{ delay: 0.8 }}
           className="mb-20"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-12 text-center">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-12 text-center">
             My <span className="text-orange-500">Journey</span>
           </h2>
           
           <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-orange-500 via-orange-400 to-orange-300"></div>
+            {/* Timeline Line (hidden on small screens) */}
+            <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-orange-500 via-orange-400 to-orange-300 hidden md:block"></div>
             
             {journey.map((item, index) => {
               const Icon = item.icon;
@@ -321,20 +321,20 @@ public class AboutSital {
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 1 + index * 0.3 }}
-                  className="relative flex items-start space-x-8 mb-12"
+                  className="relative flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-8 mb-12"
                 >
                   {/* Timeline Node */}
-                  <div className="relative z-10 w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center">
-                    <Icon className="w-6 h-6 text-white" />
+                  <div className="relative z-10 flex-shrink-0 w-12 h-12 md:w-16 md:h-16 bg-orange-500 rounded-full flex items-center justify-center">
+                    <Icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
                   </div>
                   
                   {/* Content */}
-                  <div className="flex-1 glass p-6 rounded-xl">
-                    <div className="flex items-center space-x-3 mb-2">
-                      <span className="text-orange-500 font-mono font-bold">{item.year}</span>
-                      <h3 className="text-xl font-bold text-white">{item.title}</h3>
+                  <div className="flex-1 glass p-4 md:p-6 rounded-xl">
+                    <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-3 mb-2">
+                      <span className="text-orange-500 font-mono font-bold text-sm sm:text-base">{item.year}</span>
+                      <h3 className="text-lg sm:text-xl font-bold text-white">{item.title}</h3>
                     </div>
-                    <p className="text-gray-300">{item.description}</p>
+                    <p className="text-sm sm:text-base text-gray-300">{item.description}</p>
                   </div>
                 </motion.div>
               );
@@ -349,20 +349,20 @@ public class AboutSital {
           transition={{ duration: 0.8 }}
           className="py-20 mt-20 border-t border-gray-800"
         >
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
             {/* Download CV Card */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="glass p-8 rounded-xl text-center space-y-6 hover:glow-orange transition-all duration-300"
+              className="glass p-6 sm:p-8 rounded-xl text-center space-y-6 hover:glow-orange transition-all duration-300"
             >
-              <div className="w-16 h-16 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto">
-                <Download className="w-8 h-8 text-orange-500" />
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto">
+                <Download className="w-6 h-6 sm:w-8 sm:h-8 text-orange-500" />
               </div>
               <div className="space-y-2">
-                <h3 className="text-3xl font-bold text-white">Download My CV</h3>
-                <p className="text-gray-400 text-lg">Get my complete resume and qualifications</p>
+                <h3 className="text-2xl sm:text-3xl font-bold text-white">Download My CV</h3>
+                <p className="text-gray-400 text-base sm:text-lg">Get my complete resume and qualifications</p>
               </div>
               <a
                 href="/cv/Venkata_Saikumar_CV.pdf"
@@ -379,13 +379,13 @@ public class AboutSital {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="glass p-8 rounded-xl space-y-8"
+              className="glass p-6 sm:p-8 rounded-xl space-y-8"
             >
               <div className="text-center">
-                <h3 className="text-3xl font-bold text-white mb-2">
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                   Let's <span className="text-orange-500">Connect</span>
                 </h3>
-                <p className="text-gray-400 text-lg">Reach out and let's collaborate</p>
+                <p className="text-gray-400 text-base sm:text-lg">Reach out and let's collaborate</p>
               </div>
 
               <div className="flex justify-center gap-6">
