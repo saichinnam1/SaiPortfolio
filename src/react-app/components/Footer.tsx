@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowRight, Heart, Code2 } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowRight, Heart, Code2, Sparkles, Zap, Star } from 'lucide-react';
 
 interface FooterProps {
   showCV?: boolean;
@@ -14,22 +14,28 @@ const Footer = ({ showCV = true, cvLink = '/cv/Venkata_Saikumar_CV.pdf' }: Foote
       icon: Github,
       label: 'GitHub',
       url: 'https://github.com/saichinnam1',
-      color: 'hover:text-white hover:bg-gray-700/50',
-      hoverShadow: 'hover:shadow-gray-600/50'
+      color: 'from-gray-600 to-gray-700',
+      hoverColor: 'hover:from-gray-500 hover:to-gray-600',
+      textColor: 'text-white',
+      glowColor: 'shadow-gray-600/50'
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
       url: 'https://www.linkedin.com/in/venkatasaikumar-chinnam-ba741a201/',
-      color: 'hover:text-blue-400 hover:bg-blue-500/20',
-      hoverShadow: 'hover:shadow-blue-600/50'
+      color: 'from-blue-500 to-blue-600',
+      hoverColor: 'hover:from-blue-400 hover:to-blue-500',
+      textColor: 'text-white',
+      glowColor: 'shadow-blue-500/50'
     },
     {
       icon: Mail,
       label: 'Email',
       url: 'mailto:venkatasaikumarchinnam2@gmail.com',
-      color: 'hover:text-orange-400 hover:bg-orange-500/20',
-      hoverShadow: 'hover:shadow-orange-600/50'
+      color: 'from-orange-500 to-orange-600',
+      hoverColor: 'hover:from-orange-400 hover:to-orange-500',
+      textColor: 'text-white',
+      glowColor: 'shadow-orange-500/50'
     }
   ];
 
@@ -41,155 +47,298 @@ const Footer = ({ showCV = true, cvLink = '/cv/Venkata_Saikumar_CV.pdf' }: Foote
     { label: 'Contact', href: '/#/contact' }
   ];
 
+  const techStack = ['Java', 'Spring Boot', 'React', 'MySQL', 'Docker', 'Microservices'];
+
   return (
-    <footer className="relative border-t border-gray-800/50 bg-gradient-to-b from-transparent via-black/20 to-black">
-      {/* Decorative blur effect */}
+    <footer className="relative border-t border-white/5 bg-black overflow-hidden">
+      {/* Premium animated background effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 right-0 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl opacity-20"></div>
-        <div className="absolute -bottom-40 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl opacity-20"></div>
+        {/* Animated gradient orbs */}
+        <motion.div
+          animate={{
+            x: [0, 100, 0],
+            y: [0, 50, 0],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-orange-600/20 to-transparent rounded-full blur-3xl opacity-30"
+        ></motion.div>
+        
+        <motion.div
+          animate={{
+            x: [0, -100, 0],
+            y: [0, -50, 0],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-blue-600/20 to-transparent rounded-full blur-3xl opacity-30"
+        ></motion.div>
+
+        {/* Floating particles */}
+        {[...Array(5)].map((_, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              y: [0, -20, 0],
+              opacity: [0, 1, 0]
+            }}
+            transition={{
+              duration: 4 + i,
+              repeat: Infinity,
+              delay: i * 0.8
+            }}
+            className="absolute w-1 h-1 bg-orange-500 rounded-full"
+            style={{
+              left: `${20 + i * 15}%`,
+              top: '50%'
+            }}
+          ></motion.div>
+        ))}
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-8 mb-16">
-          {/* Brand Section */}
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+        {/* Main Footer Content Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-8 mb-20">
+          {/* Brand Section - Premium */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-1"
+            transition={{ duration: 0.8 }}
+            className="lg:col-span-1 group"
           >
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
-                <Code2 className="w-5 h-5 text-white" />
+            {/* Premium brand card */}
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-blue-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+              <div className="relative bg-gradient-to-br from-gray-900/50 to-black border border-white/10 rounded-2xl p-6 backdrop-blur-xl">
+                <div className="flex items-center space-x-4 mb-6">
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
+                    className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/50"
+                  >
+                    <Code2 className="w-6 h-6 text-white" />
+                  </motion.div>
+                  <div>
+                    <motion.p
+                      animate={{ textShadow: ['0 0 10px rgba(249, 115, 22, 0)', '0 0 20px rgba(249, 115, 22, 0.5)', '0 0 10px rgba(249, 115, 22, 0)'] }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                      className="font-mono font-bold text-white text-lg"
+                    >
+                      Sai
+                    </motion.p>
+                    <p className="text-xs text-orange-400 font-mono font-semibold">Kumar.java</p>
+                  </div>
+                </div>
+                <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                  🚀 Enterprise Java Developer crafting scalable solutions with precision and passion.
+                </p>
+                <div className="flex items-center space-x-2 text-orange-400 text-sm font-semibold">
+                  <Sparkles className="w-4 h-4 animate-pulse" />
+                  <span>Powered by Innovation</span>
+                </div>
               </div>
-              <div>
-                <p className="font-mono font-bold text-white">Sai</p>
-                <p className="text-xs text-gray-400 font-mono">Kumar.java</p>
-              </div>
-            </div>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Passionate Java developer building scalable enterprise solutions with clean code and innovative thinking.
-            </p>
-            <div className="mt-6 flex items-center space-x-2 text-orange-400 text-sm">
-              <Heart className="w-4 h-4" />
-              <span>Built with Java & Spring Boot</span>
             </div>
           </motion.div>
 
-          {/* Quick Links */}
+          {/* Quick Links - Premium */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            transition={{ delay: 0.1, duration: 0.8 }}
           >
-            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-6">Navigation</h3>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.label}>
+            <h3 className="text-white font-bold text-sm uppercase tracking-widest mb-8 flex items-center space-x-2">
+              <span className="w-8 h-0.5 bg-gradient-to-r from-orange-500 to-transparent"></span>
+              <span>Navigation</span>
+            </h3>
+            <ul className="space-y-4">
+              {quickLinks.map((link, idx) => (
+                <motion.li
+                  key={link.label}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 + idx * 0.05 }}
+                >
                   <a
                     href={link.href}
-                    className="text-gray-400 hover:text-orange-400 text-sm transition-colors duration-300 flex items-center group"
+                    className="text-gray-400 hover:text-orange-400 text-sm transition-all duration-300 flex items-center group/link relative overflow-hidden"
                   >
-                    <span>{link.label}</span>
-                    <ArrowRight className="w-3 h-3 ml-2 opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                    <span className="relative z-10">{link.label}</span>
+                    <ArrowRight className="w-3 h-3 ml-2 opacity-0 group-hover/link:opacity-100 transform -translate-x-2 group-hover/link:translate-x-0 transition-all duration-300" />
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-transparent group-hover/link:w-full transition-all duration-300"></span>
                   </a>
-                </li>
+                </motion.li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Tech Stack */}
+          {/* Tech Stack - Premium */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
           >
-            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-6">Tech Stack</h3>
-            <div className="flex flex-wrap gap-2">
-              {['Java', 'Spring Boot', 'React', 'MySQL', 'Docker', 'Microservices'].map((tech) => (
-                <span
+            <h3 className="text-white font-bold text-sm uppercase tracking-widest mb-8 flex items-center space-x-2">
+              <span className="w-8 h-0.5 bg-gradient-to-r from-orange-500 to-transparent"></span>
+              <span>Tech Stack</span>
+            </h3>
+            <div className="flex flex-wrap gap-3">
+              {techStack.map((tech, idx) => (
+                <motion.div
                   key={tech}
-                  className="px-3 py-1 text-xs bg-orange-500/10 border border-orange-500/30 text-orange-400 rounded-full hover:border-orange-500 transition-colors duration-300"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 + idx * 0.05 }}
+                  whileHover={{ scale: 1.1, y: -5 }}
+                  className="relative group/tech"
                 >
-                  {tech}
-                </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg opacity-0 group-hover/tech:opacity-20 blur transition-all duration-300"></div>
+                  <span className="relative px-3 py-1.5 text-xs bg-gradient-to-br from-gray-800 to-gray-900 border border-orange-500/30 text-orange-300 rounded-lg hover:border-orange-500 transition-all duration-300 font-semibold cursor-default inline-block">
+                    {tech}
+                  </span>
+                </motion.div>
               ))}
             </div>
           </motion.div>
 
-          {/* Social Links */}
+          {/* Social Links - Premium */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-6">Connect</h3>
+            <h3 className="text-white font-bold text-sm uppercase tracking-widest mb-8 flex items-center space-x-2">
+              <span className="w-8 h-0.5 bg-gradient-to-r from-orange-500 to-transparent"></span>
+              <span>Connect</span>
+            </h3>
             <div className="flex flex-col space-y-3">
-              {socialLinks.map((social) => {
+              {socialLinks.map((social, idx) => {
                 const Icon = social.icon;
                 return (
-                  <a
+                  <motion.a
                     key={social.label}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex items-center space-x-3 px-4 py-2 rounded-lg bg-gray-800/30 border border-gray-700/50 text-gray-300 hover:scale-105 transition-all duration-300 group ${social.color} ${social.hoverShadow} hover:shadow-lg`}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 + idx * 0.05 }}
+                    whileHover={{ scale: 1.05, x: 8 }}
+                    className="group/social"
                   >
-                    <Icon className="w-4 h-4" />
-                    <span className="text-sm font-medium">{social.label}</span>
-                  </a>
+                    <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-blue-500/20 rounded-xl opacity-0 group-hover/social:opacity-100 blur-lg transition-all duration-300"></div>
+                    <div className={`relative flex items-center space-x-3 px-4 py-3 rounded-xl bg-gradient-to-r ${social.color} border border-white/10 group-hover/social:border-white/30 transition-all duration-300 shadow-lg hover:shadow-2xl ${social.glowColor}`}>
+                      <Icon className={`w-4 h-4 ${social.textColor}`} />
+                      <span className={`text-sm font-semibold ${social.textColor}`}>{social.label}</span>
+                      <Zap className="w-3 h-3 ml-auto opacity-0 group-hover/social:opacity-100 transition-all duration-300" />
+                    </div>
+                  </motion.a>
                 );
               })}
             </div>
           </motion.div>
         </div>
 
-        {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-orange-500/20 to-transparent mb-8"></div>
+        {/* Premium Divider with animation */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+          className="h-px bg-gradient-to-r from-transparent via-orange-500/50 to-transparent mb-12 origin-center"
+        ></motion.div>
 
-        {/* Bottom Section */}
+        {/* Bottom Section - Premium */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="flex flex-col sm:flex-row justify-between items-center gap-6"
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="flex flex-col sm:flex-row justify-between items-center gap-8"
         >
-          {/* Copyright */}
+          {/* Left: Copyright & Tagline */}
           <div className="text-center sm:text-left">
-            <p className="text-gray-400 text-xs sm:text-sm">
-              © {currentYear} <span className="text-orange-400 font-semibold">Sai Chinnam</span>. All rights reserved.
-            </p>
-            <p className="text-gray-500 text-xs mt-2">
-              Crafted with <span className="text-orange-500">❤️</span> by a passionate Java developer
-            </p>
+            <motion.p
+              animate={{ opacity: [0.7, 1, 0.7] }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="text-gray-400 text-xs sm:text-sm font-semibold"
+            >
+              © {currentYear} <span className="text-orange-400">Sai Chinnam</span>
+              <span className="text-gray-600"> • </span>
+              <span className="text-gray-500">All Rights Reserved</span>
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6 }}
+              className="text-gray-500 text-xs mt-2 flex items-center justify-center sm:justify-start space-x-1"
+            >
+              <span>Crafted with</span>
+              <Heart className="w-3 h-3 text-orange-500 animate-pulse" />
+              <span>by a passionate Java developer</span>
+            </motion.p>
           </div>
 
-          {/* CTA or Additional Info */}
+          {/* Right: CTA with premium styling */}
           {showCV && (
-            <div className="flex flex-col sm:flex-row items-center gap-4">
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6 }}
+              className="flex flex-col sm:flex-row items-center gap-4 group"
+            >
               <div className="text-center sm:text-right">
-                <p className="text-gray-400 text-xs font-mono mb-2">ALWAYS OPEN TO</p>
-                <p className="text-white font-semibold text-sm">New Opportunities</p>
+                <motion.p
+                  animate={{ opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="text-gray-500 text-xs font-mono mb-2 uppercase tracking-widest"
+                >
+                  ✨ Always open to
+                </motion.p>
+                <p className="text-white font-bold text-sm bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent">
+                  New Opportunities
+                </p>
               </div>
-              <a
+              <motion.a
                 href={cvLink}
                 download
-                className="px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-sm font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95"
+                whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(249, 115, 22, 0.5)' }}
+                whileTap={{ scale: 0.95 }}
+                className="relative px-6 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white text-sm font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-orange-500/50 overflow-hidden group/btn"
               >
-                Download CV
-              </a>
-            </div>
+                <span className="relative z-10 flex items-center space-x-2">
+                  <Star className="w-4 h-4" />
+                  <span>Download CV</span>
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 opacity-0 group-hover/btn:opacity-100 transition-all duration-300"></div>
+              </motion.a>
+            </motion.div>
           )}
         </motion.div>
+
+        {/* Decorative animated line at bottom */}
+        <motion.div
+          animate={{ x: [-1000, 1000] }}
+          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+          className="absolute bottom-0 left-0 h-px bg-gradient-to-r from-transparent via-orange-500/30 to-transparent w-full"
+        ></motion.div>
       </div>
 
-      {/* Animated gradient border on top */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/50 to-transparent"></div>
+      {/* Top animated border */}
+      <motion.div
+        animate={{ opacity: [0.3, 0.8, 0.3] }}
+        transition={{ duration: 3, repeat: Infinity }}
+        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500 to-transparent"
+      ></motion.div>
     </footer>
   );
 };
