@@ -19,6 +19,14 @@ const Landing: React.FC = () => {
   const [currentChar, setCurrentChar] = useState(0);
   const [showCursor, setShowCursor] = useState(true);
 
+  // Only show landing if sessionStorage flag is not set
+  useEffect(() => {
+    const visited = sessionStorage.getItem("landingShown");
+    if (visited) {
+      navigate("/home", { replace: true });
+    }
+  }, [navigate]);
+
   // Blinking cursor
   useEffect(() => {
     const interval = setInterval(() => setShowCursor(prev => !prev), 500);
@@ -39,7 +47,7 @@ const Landing: React.FC = () => {
           setDisplayedText(prev => [...prev, bootLogs[currentLine][currentChar]]);
         }
         setCurrentChar(prev => prev + 1);
-      }, 30); // typing speed
+      }, 30);
       return () => clearTimeout(timeout);
     } else {
       const timeout = setTimeout(() => {
@@ -50,7 +58,8 @@ const Landing: React.FC = () => {
         if (currentLine === bootLogs.length - 1) {
           const audio = new Audio("https://www.soundjay.com/button/beep-07.wav");
           audio.play();
-          setTimeout(() => navigate("/home"), 800);
+          sessionStorage.setItem("landingShown", "true"); // mark as visited for this session
+          setTimeout(() => navigate("/home", { replace: true }), 800);
         }
       }, 150);
       return () => clearTimeout(timeout);
@@ -59,14 +68,11 @@ const Landing: React.FC = () => {
 
   return (
     <div className="absolute inset-0 z-50 flex flex-col justify-center items-center font-mono text-green-400 pointer-events-none">
-      {/* Terminal overlay */}
       <div className="absolute inset-0 flex flex-col justify-center items-center z-50 max-w-xl mx-auto text-[10px] text-center pointer-events-none">
         {displayedText.map((line, index) => (
           <div key={index}>{"> " + line}</div>
         ))}
-        {currentLine < bootLogs.length && (
-          <div>{showCursor ? "█" : ""}</div>
-        )}
+        {currentLine < bootLogs.length && <div>{showCursor ? "█" : ""}</div>}
         {currentLine === bootLogs.length && (
           <div className="mt-4 px-6 py-2 text-black font-bold rounded bg-green-400 opacity-0 animate-fadeIn pointer-events-auto text-[10px]">
             Entering Portfolio...
