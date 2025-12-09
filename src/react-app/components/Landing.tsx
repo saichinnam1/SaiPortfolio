@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import MatrixRain from "../components/MatrixRain"; // your existing component
-import ParticleField from "../components/ParticleField"; // your existing component
+import { useNavigate } from "react-router"; // react-router only
+import MatrixRain from "../components/MatrixRain";
+import ParticleField from "../components/ParticleField";
 
 const bootLogs = [
   "Initializing JVM runtime...",
@@ -27,7 +27,7 @@ const Landing: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Typing effect per character
+  // Typing per character
   useEffect(() => {
     if (currentLine >= bootLogs.length) return;
 
@@ -41,7 +41,7 @@ const Landing: React.FC = () => {
           setDisplayedText(prev => [...prev, bootLogs[currentLine][currentChar]]);
         }
         setCurrentChar(prev => prev + 1);
-      }, 50);
+      }, 50); // typing speed
       return () => clearTimeout(timeout);
     } else {
       const timeout = setTimeout(() => {
@@ -52,7 +52,8 @@ const Landing: React.FC = () => {
         if (currentLine === bootLogs.length - 1) {
           const audio = new Audio("https://www.soundjay.com/button/beep-07.wav");
           audio.play();
-          setTimeout(() => navigate("/home"), 1000); // auto-redirect
+          // Auto redirect
+          setTimeout(() => navigate("/home"), 1000);
         }
       }, 200);
       return () => clearTimeout(timeout);
@@ -60,12 +61,12 @@ const Landing: React.FC = () => {
   }, [currentChar, currentLine, displayedText, navigate]);
 
   return (
-    <div className="absolute inset-0 z-50 flex flex-col justify-center items-center font-mono text-green-400">
-      {/* Background effects */}
+    <div className="absolute inset-0 flex flex-col justify-center items-center font-mono text-green-400 bg-black z-50">
+      {/* Background */}
       <MatrixRain />
       <ParticleField />
 
-      {/* Terminal text overlay */}
+      {/* Terminal overlay */}
       <div className="absolute inset-0 flex flex-col justify-center items-center z-50 max-w-xl mx-auto text-lg pointer-events-none">
         {displayedText.map((line, index) => (
           <div key={index}>{"> " + line}</div>
