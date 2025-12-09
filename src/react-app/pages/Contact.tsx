@@ -116,24 +116,24 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen pt-24 px-4 sm:px-6 md:px-10 lg:px-20">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h1 className="text-4xl lg:text-6xl font-bold text-white mb-4">
-            Let's <span className="text-orange-500 font-mono">Connect</span>
+          <h1 className="text-3xl sm:text-3xl lg:text-4xl font-bold text-white mb-3">
+            Let's Connect <span className="text-orange-500 font-mono">.java</span>
           </h1>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xs sm:text-sm text-gray-400 max-w-2xl mx-auto">
             Ready to collaborate on your next project or discuss new opportunities
           </p>
         </motion.div>
 
         {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-20">
+        <div className="grid lg:grid-cols-2 gap-8 mb-16">
           {/* Left Side - Code */}
           {/* <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -146,8 +146,8 @@ const ContactPage = () => {
             </TerminalWindow> */}
 
             {/* Contact Information */}
-            <div className="space-y-6">
-              <h2 className="text-2xl font-bold text-white mb-6">Contact Information</h2>
+            <div className="space-y-4">
+              <h2 className="text-lg font-bold text-white mb-4">Contact Information</h2>
               
               {contactInfo.map((contact) => {
                 const Icon = contact.icon;
@@ -157,15 +157,15 @@ const ContactPage = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.6 }}
-                    className="flex items-center space-x-4 p-4 glass rounded-lg hover:glow-orange transition-all duration-300 group cursor-pointer"
+                    className="flex items-center space-x-3 p-3 glass rounded-lg hover:glow-orange transition-all duration-300 group cursor-pointer"
                     onClick={() => window.open(contact.href, '_blank')}
                   >
-                    <div className={`w-12 h-12 ${contact.color} bg-current/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className={`w-5 h-5 ${contact.color}`} />
+                    <div className={`w-10 h-10 ${contact.color} bg-current/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className={`w-4 h-4 ${contact.color}`} />
                     </div>
                     <div className="flex-1">
-                      <p className="text-gray-400 text-sm">{contact.label}</p>
-                      <p className="text-white font-semibold">{contact.value}</p>
+                      <p className="text-gray-400 text-xs">{contact.label}</p>
+                      <p className="text-white text-sm font-semibold">{contact.value}</p>
                     </div>
                     <div className="flex space-x-2">
                       <button
@@ -173,7 +173,7 @@ const ContactPage = () => {
                           e.stopPropagation();
                           copyToClipboard(contact.value, contact.label);
                         }}
-                        className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                        className="p-1 hover:bg-white/10 rounded-lg transition-colors"
                       >
                         {copied === contact.label ? (
                           <CheckCircle className="w-4 h-4 text-green-500" />
@@ -181,7 +181,7 @@ const ContactPage = () => {
                           <Copy className="w-4 h-4 text-gray-400" />
                         )}
                       </button>
-                      <button className="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                      <button className="p-1 hover:bg-white/10 rounded-lg transition-colors">
                         <ExternalLink className="w-4 h-4 text-gray-400" />
                       </button>
                     </div>
@@ -191,8 +191,8 @@ const ContactPage = () => {
             </div>
 
             {/* Social Links */}
-            <div className="space-y-6">
-              <h2 className="text-2xl font-bold text-white">Social Profiles</h2>
+            <div className="space-y-4">
+              <h2 className="text-lg font-bold text-white">Social Profiles</h2>
               
               {socialLinks.map((social) => {
                 const Icon = social.icon;
@@ -205,16 +205,16 @@ const ContactPage = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.8 }}
-                    className="flex items-center space-x-4 p-4 glass rounded-lg hover:glow-orange transition-all duration-300 group"
+                    className="flex items-center space-x-3 p-3 glass rounded-lg hover:glow-orange transition-all duration-300 group"
                   >
-                    <div className={`w-12 h-12 ${social.color} bg-current/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className={`w-5 h-5 ${social.color}`} />
+                    <div className={`w-10 h-10 ${social.color} bg-current/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className={`w-4 h-4 ${social.color}`} />
                     </div>
                     <div className="flex-1">
-                      <p className="text-gray-400 text-sm">{social.label}</p>
-                      <p className="text-white font-semibold">{social.value}</p>
+                      <p className="text-gray-400 text-xs">{social.label}</p>
+                      <p className="text-white text-sm font-semibold">{social.value}</p>
                     </div>
-                    <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
+                    <ExternalLink className="w-3 h-3 text-gray-400 group-hover:text-white transition-colors" />
                   </motion.a>
                 );
               })}
@@ -227,16 +227,16 @@ const ContactPage = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="glass p-8 rounded-xl">
-              <h2 className="text-2xl font-bold text-white mb-6 flex items-center space-x-3">
-                <Send className="w-6 h-6 text-orange-500" />
+            <div className="glass p-6 rounded-xl">
+              <h2 className="text-lg font-bold text-white mb-4 flex items-center space-x-2">
+                <Send className="w-5 h-5 text-orange-500" />
                 <span>Send Message</span>
               </h2>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-xs font-medium text-gray-300 mb-1">
                       Name *
                     </label>
                     <input
@@ -244,13 +244,13 @@ const ContactPage = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-orange-500 transition-colors"
+                      className="w-full px-3 py-2 bg-gray-800/50 border border-gray-600 rounded-lg text-sm text-white placeholder-gray-400 focus:outline-none focus:border-orange-500 transition-colors"
                       placeholder="Your full name"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-xs font-medium text-gray-300 mb-1">
                       Email *
                     </label>
                     <input
@@ -258,7 +258,7 @@ const ContactPage = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-orange-500 transition-colors"
+                      className="w-full px-3 py-2 bg-gray-800/50 border border-gray-600 rounded-lg text-sm text-white placeholder-gray-400 focus:outline-none focus:border-orange-500 transition-colors"
                       placeholder="your.email@example.com"
                       required
                     />
@@ -266,7 +266,7 @@ const ContactPage = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-xs font-medium text-gray-300 mb-1">
                     Subject *
                   </label>
                   <input
@@ -274,22 +274,22 @@ const ContactPage = () => {
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-orange-500 transition-colors"
+                    className="w-full px-3 py-2 bg-gray-800/50 border border-gray-600 rounded-lg text-sm text-white placeholder-gray-400 focus:outline-none focus:border-orange-500 transition-colors"
                     placeholder="Project collaboration, job opportunity, etc."
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-xs font-medium text-gray-300 mb-1">
                     Message *
                   </label>
                   <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    rows={6}
-                    className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-orange-500 transition-colors resize-none"
+                    rows={5}
+                    className="w-full px-3 py-2 bg-gray-800/50 border border-gray-600 rounded-lg text-sm text-white placeholder-gray-400 focus:outline-none focus:border-orange-500 transition-colors resize-none"
                     placeholder="Tell me about your project or opportunity..."
                     required
                   />
@@ -298,7 +298,7 @@ const ContactPage = () => {
                 <button
                   type="submit"
                   disabled={formStatus === 'validating' || formStatus === 'sending'}
-                  className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 ${
+                  className={`w-full py-2 px-6 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center justify-center space-x-2 ${
                     formStatus === 'sent'
                       ? 'bg-green-600 hover:bg-green-700 text-white'
                       : formStatus === 'error'
@@ -342,9 +342,9 @@ const ContactPage = () => {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="p-4 bg-green-500/20 border border-green-500/50 rounded-lg"
+                    className="p-3 bg-green-500/20 border border-green-500/50 rounded-lg"
                   >
-                    <p className="text-green-400 text-sm">
+                    <p className="text-green-400 text-xs">
                       Thank you for your message! I'll get back to you within 24 hours.
                     </p>
                   </motion.div>
@@ -357,13 +357,13 @@ const ContactPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="mt-6 glass p-4 rounded-lg"
+              className="mt-4 glass p-3 rounded-lg"
             >
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 <div>
-                  <p className="text-white font-semibold">Available for new opportunities</p>
-                  <p className="text-gray-400 text-sm">Response time: Usually within 24 hours</p>
+                  <p className="text-white text-sm font-semibold">Available for new opportunities</p>
+                  <p className="text-gray-400 text-xs">Response time: Usually within 24 hours</p>
                 </div>
               </div>
             </motion.div>
@@ -371,7 +371,9 @@ const ContactPage = () => {
         </div>
 
         {/* Footer */}
-        <Footer showCV={false} />
+        <div className="mt-16 pt-8">
+          <Footer showCV={true} />
+        </div>
       </div>
     </div>
   );

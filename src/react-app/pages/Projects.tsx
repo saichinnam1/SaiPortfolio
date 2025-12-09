@@ -8,8 +8,6 @@ import {
   Filter,
   Search,
   Star,
-  Linkedin,
-  Mail,
 } from "lucide-react";
 import Footer from "../components/Footer";
 
@@ -233,29 +231,12 @@ const ProjectsPage = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl lg:text-6xl font-bold text-white mb-4">
-            My <span className="text-orange-500 font-mono">Projects</span>
+          <h1 className="text-3xl sm:text-3xl lg:text-4xl font-bold text-white mb-3">
+            My Projects <span className="text-orange-500 font-mono">.java</span>
           </h1>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-8">
+          <p className="text-xs text-gray-400 max-w-2xl mx-auto mb-6">
             {projects.length}+ projects showcasing Full Stack Web & Mobile Development
           </p>
-
-          {/* SEARCH BAR */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3 }}
-            className="relative max-w-md mx-auto mb-8"
-          >
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search projects..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-orange-500 transition-colors"
-            />
-          </motion.div>
         </motion.div>
 
         {/* CATEGORY FILTERS */}
@@ -263,7 +244,7 @@ const ProjectsPage = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="flex flex-wrap justify-center gap-3 mb-10"
         >
           {categories.map((category) => (
             <button
@@ -297,14 +278,14 @@ const ProjectsPage = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="mb-20"
+            className="mb-16"
           >
-            <h2 className="text-3xl font-bold text-white mb-8 flex items-center space-x-3">
-              <Star className="w-8 h-8 text-orange-500" />
+            <h2 className="text-xl font-bold text-white mb-6 flex items-center space-x-2">
+              <Star className="w-6 h-6 text-orange-500" />
               <span>Featured Projects</span>
             </h2>
 
-            <div className="grid lg:grid-cols-2 gap-8">
+            <div className="grid lg:grid-cols-2 gap-6">
               {featuredProjects.slice(0, 2).map((project, index) => (
                 <motion.div
                   key={project.id}
@@ -313,7 +294,7 @@ const ProjectsPage = () => {
                   transition={{ delay: index * 0.2 }}
                   className="glass rounded-xl overflow-hidden hover:glow-orange transition-all duration-300 group"
                 >
-                  <div className="relative h-48 overflow-hidden">
+                  <div className="relative h-40 overflow-hidden">
                     <img
                       src={project.image}
                       alt={project.title}
@@ -322,13 +303,13 @@ const ProjectsPage = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   </div>
 
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-2">
+                  <div className="p-5">
+                    <h3 className="text-lg font-bold text-white mb-2">
                       {project.title}
                     </h3>
-                    <p className="text-gray-400 mb-4">{project.description}</p>
+                    <p className="text-gray-400 text-sm mb-3">{project.description}</p>
 
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-2 mb-3">
                       {project.technologies.map((tech) => (
                         <span
                           key={tech}
@@ -381,14 +362,14 @@ const ProjectsPage = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
         >
-          <h2 className="text-3xl font-bold text-white mb-8">
+          <h2 className="text-xl font-bold text-white mb-6">
             All Projects{" "}
-            <span className="text-gray-400 text-lg">
+            <span className="text-gray-400 text-xs">
               ({filteredProjects.length})
             </span>
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -397,7 +378,7 @@ const ProjectsPage = () => {
                 transition={{ delay: 0.8 + index * 0.1 }}
                 className="glass rounded-xl overflow-hidden hover:glow-orange transition-all duration-300 group cursor-pointer"
               >
-                <div className="relative h-40 overflow-hidden">
+                <div className="relative h-36 overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -406,15 +387,15 @@ const ProjectsPage = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 </div>
 
-                <div className="p-4">
-                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-orange-500 transition-colors">
+                <div className="p-3">
+                  <h3 className="text-sm font-bold text-white mb-1 group-hover:text-orange-500 transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-gray-400 text-sm mb-3 line-clamp-2">
+                  <p className="text-gray-400 text-xs mb-2 line-clamp-2">
                     {project.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-1 mb-3">
+                  <div className="flex flex-wrap gap-1 mb-2">
                     {project.technologies.slice(0, 2).map((tech) => (
                       <span
                         key={tech}
@@ -462,7 +443,9 @@ const ProjectsPage = () => {
         </motion.section>
 
         {/* ===== Footer Section ===== */}
-        <Footer showCV={false} />
+        <div className="mt-16 pt-8">
+          <Footer showCV={true} />
+        </div>
       </div>
     </div>
   );

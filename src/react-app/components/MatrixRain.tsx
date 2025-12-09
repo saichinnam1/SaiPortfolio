@@ -2,58 +2,107 @@ import { useEffect, useRef } from 'react';
 
 const MatrixRain = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const particlesRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    const canvas = particlesRef.current;
+    if (!canvas) return;
 
-    // Java keywords and symbols for the matrix effect
-    const javaChars = ['class', 'public', 'private', 'static', 'void', 'int', 'String', 'boolean', 'if', 'else', 'for', 'while', 'try', 'catch', 'new', 'this', 'super', '{', '}', '(', ')', ';', '@', '#', '$', '%', '&', '*', '+', '-', '=', '<', '>', '?', '|', '~', '^'];
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
-    const createColumn = () => {
-      const column = document.createElement('div');
-      column.className = 'matrix-column';
-      
-      // Generate random text for the column
-      let text = '';
-      for (let i = 0; i < Math.floor(Math.random() * 20) + 10; i++) {
-        text += javaChars[Math.floor(Math.random() * javaChars.length)] + '\n';
-      }
-      column.textContent = text;
-      
-      // Random position and animation duration
-      column.style.left = Math.random() * window.innerWidth + 'px';
-      column.style.animationDuration = (Math.random() * 3 + 2) + 's';
-      column.style.animationDelay = Math.random() * 2 + 's';
-      column.style.opacity = (Math.random() * 0.5 + 0.1).toString();
-      
-      container.appendChild(column);
-      
-      // Remove column after animation completes
-      setTimeout(() => {
-        if (column.parentNode) {
-          column.parentNode.removeChild(column);
-        }
-      }, 5000);
+    // Set canvas size
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     };
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
 
-    // Create initial columns
-    for (let i = 0; i < 10; i++) {
-      setTimeout(createColumn, i * 200);
+    // Particle system
+    interface Particle {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      life: number;
+      maxLife: number;
+      size: number;
     }
 
-    // Continue creating columns
-    const interval = setInterval(createColumn, 500);
+    const particles: Particle[] = [];
+
+    const createParticle = () => {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: -10,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: Math.random() * 0.8 + 0.3,
+        life: 1,
+        maxLife: 1,
+        size: Math.random() * 2 + 1,
+      });
+    };
+
+    const animate = () => {
+      // Clear canvas with slight fade
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Update and draw particles
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+
+        // Update position
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= 0.003;
+
+        // Fade out effect
+        const alpha = p.life * 0.4;
+
+        // Draw particle
+        ctx.fillStyle = `rgba(237, 139, 0, ${alpha})`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Optional: add subtle glow
+        ctx.strokeStyle = `rgba(237, 139, 0, ${alpha * 0.5})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+
+        // Remove dead particles
+        if (p.life <= 0) {
+          particles.splice(i, 1);
+        }
+      }
+
+      // Randomly create new particles
+      if (Math.random() < 0.6) {
+        createParticle();
+      }
+
+      requestAnimationFrame(animate);
+    };
+
+    animate();
 
     return () => {
-      clearInterval(interval);
-      // Clean up existing columns
-      const columns = container.querySelectorAll('.matrix-column');
-      columns.forEach(column => column.remove());
+      window.removeEventListener('resize', resizeCanvas);
+      particles.length = 0;
     };
   }, []);
 
-  return <div ref={containerRef} className="matrix-bg" />;
+  return (
+    <>
+      <canvas
+        ref={particlesRef}
+        className="matrix-canvas"
+      />
+      <div ref={containerRef} className="matrix-bg" />
+    </>
+  );
 };
 
 export default MatrixRain;
