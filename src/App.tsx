@@ -1,4 +1,5 @@
-import Landing from "./react-app/components/Landing"; // new import
+import { HashRouter as Router, Routes, Route } from "react-router";
+import Landing from "./react-app/components/Landing";
 import HomePage from "./react-app/pages/Home";
 import AboutPage from "./react-app/pages/About";
 import ExperiencePage from "./react-app/pages/Experience";
@@ -30,8 +31,11 @@ export default function App() {
   return (
     <Router>
       <div className="relative min-h-screen">
+        {/* Background effects */}
         <MatrixRain />
         <ParticleField />
+
+        {/* Navigation and page content */}
         <Navigation />
         <AppContent />
       </div>
