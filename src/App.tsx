@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route } from "react-router";
+import { HashRouter as Router, Routes, Route, useLocation } from "react-router";
 import Landing from "./react-app/components/Landing";
 import HomePage from "./react-app/pages/Home";
 import AboutPage from "./react-app/pages/About";
@@ -35,10 +35,18 @@ export default function App() {
         <MatrixRain />
         <ParticleField />
 
-        {/* Navigation and page content */}
-        <Navigation />
+        {/* Conditional Navbar */}
+        <ConditionalNavbar />
+
         <AppContent />
       </div>
     </Router>
   );
+}
+
+// Hide Navbar on Landing page
+function ConditionalNavbar() {
+  const location = useLocation();
+  if (location.pathname === "/") return null; // hide navbar on landing
+  return <Navigation />;
 }
