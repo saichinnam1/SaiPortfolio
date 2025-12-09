@@ -1,9 +1,10 @@
-import { HashRouter as Router, Routes, Route } from "react-router";
+import Landing from "./react-app/components/Landing"; // new import
 import HomePage from "./react-app/pages/Home";
 import AboutPage from "./react-app/pages/About";
 import ExperiencePage from "./react-app/pages/Experience";
 import ProjectsPage from "./react-app/pages/Projects";
 import ContactPage from "./react-app/pages/Contact";
+
 import Navigation from "./react-app/components/Navigation";
 import MatrixRain from "./react-app/components/MatrixRain";
 import ParticleField from "./react-app/components/ParticleField";
@@ -14,7 +15,8 @@ function AppContent() {
     <>
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/experience" element={<ExperiencePage />} />
         <Route path="/projects" element={<ProjectsPage />} />
