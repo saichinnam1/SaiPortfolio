@@ -19,11 +19,21 @@ const Landing: React.FC = () => {
   const [currentChar, setCurrentChar] = useState(0);
   const [showCursor, setShowCursor] = useState(true);
 
+  // If landing was already shown, skip
+  useEffect(() => {
+    const hasVisited = localStorage.getItem("landingShown");
+    if (hasVisited) {
+      navigate("/home");
+    }
+  }, [navigate]);
+
+  // Blinking cursor
   useEffect(() => {
     const interval = setInterval(() => setShowCursor(prev => !prev), 500);
     return () => clearInterval(interval);
   }, []);
 
+  // Typing per character
   useEffect(() => {
     if (currentLine >= bootLogs.length) return;
 
@@ -37,26 +47,29 @@ const Landing: React.FC = () => {
           setDisplayedText(prev => [...prev, bootLogs[currentLine][currentChar]]);
         }
         setCurrentChar(prev => prev + 1);
-      }, 50);
+      }, 30); // slightly faster typing
       return () => clearTimeout(timeout);
     } else {
       const timeout = setTimeout(() => {
         setCurrentLine(prev => prev + 1);
         setCurrentChar(0);
 
+        // Play beep and redirect on last line
         if (currentLine === bootLogs.length - 1) {
           const audio = new Audio("https://www.soundjay.com/button/beep-07.wav");
           audio.play();
-          setTimeout(() => navigate("/home"), 1000);
+          localStorage.setItem("landingShown", "true"); // mark visited
+          setTimeout(() => navigate("/home"), 800);
         }
-      }, 200);
+      }, 150);
       return () => clearTimeout(timeout);
     }
   }, [currentChar, currentLine, displayedText, navigate]);
 
   return (
     <div className="absolute inset-0 z-50 flex flex-col justify-center items-center font-mono text-green-400 pointer-events-none">
-      <div className="max-w-xl mx-auto text-lg text-center">
+      {/* Background already handled in App.tsx */}
+      <div className="absolute inset-0 flex flex-col justify-center items-center z-50 max-w-xl mx-auto text-[10px] text-center pointer-events-none">
         {displayedText.map((line, index) => (
           <div key={index}>{"> " + line}</div>
         ))}
@@ -64,7 +77,7 @@ const Landing: React.FC = () => {
           <div>{showCursor ? "█" : ""}</div>
         )}
         {currentLine === bootLogs.length && (
-          <div className="mt-10 px-8 py-4 text-black font-bold rounded bg-green-400 opacity-0 animate-fadeIn pointer-events-auto">
+          <div className="mt-4 px-6 py-2 text-black font-bold rounded bg-green-400 opacity-0 animate-fadeIn pointer-events-auto text-[10px]">
             Entering Portfolio...
           </div>
         )}
