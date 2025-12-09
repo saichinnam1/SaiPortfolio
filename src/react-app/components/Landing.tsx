@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
+import MatrixRain from "../components/MatrixRain"; // your existing component
+import ParticleField from "../components/ParticleField"; // your existing component
 
 const bootLogs = [
   "Initializing JVM runtime...",
@@ -39,10 +41,9 @@ const Landing: React.FC = () => {
           setDisplayedText(prev => [...prev, bootLogs[currentLine][currentChar]]);
         }
         setCurrentChar(prev => prev + 1);
-      }, 50); // typing speed
+      }, 50);
       return () => clearTimeout(timeout);
     } else {
-      // Move to next line
       const timeout = setTimeout(() => {
         setCurrentLine(prev => prev + 1);
         setCurrentChar(0);
@@ -51,33 +52,35 @@ const Landing: React.FC = () => {
         if (currentLine === bootLogs.length - 1) {
           const audio = new Audio("https://www.soundjay.com/button/beep-07.wav");
           audio.play();
-          // Auto redirect after 1s
-          setTimeout(() => navigate("/home"), 1000);
+          setTimeout(() => navigate("/home"), 1000); // auto-redirect
         }
-      }, 200); // pause between lines
+      }, 200);
       return () => clearTimeout(timeout);
     }
   }, [currentChar, currentLine, displayedText, navigate]);
 
   return (
-    <div className="absolute inset-0 flex flex-col justify-center items-center font-mono text-green-400 bg-black z-50">
-      <div className="max-w-xl mx-auto text-lg">
+    <div className="absolute inset-0 z-50 flex flex-col justify-center items-center font-mono text-green-400">
+      {/* Background effects */}
+      <MatrixRain />
+      <ParticleField />
+
+      {/* Terminal text overlay */}
+      <div className="absolute inset-0 flex flex-col justify-center items-center z-50 max-w-xl mx-auto text-lg pointer-events-none">
         {displayedText.map((line, index) => (
           <div key={index}>{"> " + line}</div>
         ))}
         {currentLine < bootLogs.length && (
           <div>{showCursor ? "█" : ""}</div>
         )}
+        {currentLine === bootLogs.length && (
+          <div className="mt-10 px-8 py-4 text-black font-bold rounded bg-green-400 opacity-0 animate-fadeIn pointer-events-auto">
+            Entering Portfolio...
+          </div>
+        )}
       </div>
 
-      {/* Fade-in message after last line */}
-      {currentLine === bootLogs.length && (
-        <div className="mt-10 px-8 py-4 text-black font-bold rounded bg-green-400 opacity-0 animate-fadeIn">
-          Entering Portfolio...
-        </div>
-      )}
-
-      {/* Tailwind animation for fadeIn */}
+      {/* Fade-in animation */}
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; }
