@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router"; // react-router only
-import MatrixRain from "../components/MatrixRain";
-import ParticleField from "../components/ParticleField";
+import { useNavigate } from "react-router";
 
 const bootLogs = [
   "Initializing JVM runtime...",
@@ -21,13 +19,11 @@ const Landing: React.FC = () => {
   const [currentChar, setCurrentChar] = useState(0);
   const [showCursor, setShowCursor] = useState(true);
 
-  // Blinking cursor
   useEffect(() => {
     const interval = setInterval(() => setShowCursor(prev => !prev), 500);
     return () => clearInterval(interval);
   }, []);
 
-  // Typing per character
   useEffect(() => {
     if (currentLine >= bootLogs.length) return;
 
@@ -41,18 +37,16 @@ const Landing: React.FC = () => {
           setDisplayedText(prev => [...prev, bootLogs[currentLine][currentChar]]);
         }
         setCurrentChar(prev => prev + 1);
-      }, 50); // typing speed
+      }, 50);
       return () => clearTimeout(timeout);
     } else {
       const timeout = setTimeout(() => {
         setCurrentLine(prev => prev + 1);
         setCurrentChar(0);
 
-        // Play beep on last line
         if (currentLine === bootLogs.length - 1) {
           const audio = new Audio("https://www.soundjay.com/button/beep-07.wav");
           audio.play();
-          // Auto redirect
           setTimeout(() => navigate("/home"), 1000);
         }
       }, 200);
@@ -61,13 +55,8 @@ const Landing: React.FC = () => {
   }, [currentChar, currentLine, displayedText, navigate]);
 
   return (
-    <div className="absolute inset-0 flex flex-col justify-center items-center font-mono text-green-400 bg-black z-50">
-      {/* Background */}
-      <MatrixRain />
-      <ParticleField />
-
-      {/* Terminal overlay */}
-      <div className="absolute inset-0 flex flex-col justify-center items-center z-50 max-w-xl mx-auto text-lg pointer-events-none">
+    <div className="absolute inset-0 z-50 flex flex-col justify-center items-center font-mono text-green-400 pointer-events-none">
+      <div className="max-w-xl mx-auto text-lg text-center">
         {displayedText.map((line, index) => (
           <div key={index}>{"> " + line}</div>
         ))}
@@ -81,7 +70,6 @@ const Landing: React.FC = () => {
         )}
       </div>
 
-      {/* Fade-in animation */}
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; }
