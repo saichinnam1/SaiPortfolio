@@ -19,14 +19,6 @@ const Landing: React.FC = () => {
   const [currentChar, setCurrentChar] = useState(0);
   const [showCursor, setShowCursor] = useState(true);
 
-  // If landing was already shown, skip
-  useEffect(() => {
-    const hasVisited = localStorage.getItem("landingShown");
-    if (hasVisited) {
-      navigate("/home");
-    }
-  }, [navigate]);
-
   // Blinking cursor
   useEffect(() => {
     const interval = setInterval(() => setShowCursor(prev => !prev), 500);
@@ -47,7 +39,7 @@ const Landing: React.FC = () => {
           setDisplayedText(prev => [...prev, bootLogs[currentLine][currentChar]]);
         }
         setCurrentChar(prev => prev + 1);
-      }, 30); // slightly faster typing
+      }, 30); // typing speed
       return () => clearTimeout(timeout);
     } else {
       const timeout = setTimeout(() => {
@@ -58,7 +50,6 @@ const Landing: React.FC = () => {
         if (currentLine === bootLogs.length - 1) {
           const audio = new Audio("https://www.soundjay.com/button/beep-07.wav");
           audio.play();
-          localStorage.setItem("landingShown", "true"); // mark visited
           setTimeout(() => navigate("/home"), 800);
         }
       }, 150);
@@ -68,7 +59,7 @@ const Landing: React.FC = () => {
 
   return (
     <div className="absolute inset-0 z-50 flex flex-col justify-center items-center font-mono text-green-400 pointer-events-none">
-      {/* Background already handled in App.tsx */}
+      {/* Terminal overlay */}
       <div className="absolute inset-0 flex flex-col justify-center items-center z-50 max-w-xl mx-auto text-[10px] text-center pointer-events-none">
         {displayedText.map((line, index) => (
           <div key={index}>{"> " + line}</div>
